@@ -1,11 +1,13 @@
-
 package com.ingbank.domain;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +33,31 @@ public class CustomerDomain {
 
 	@Column(name = "EMAILID")
 	private String emailId;
+	
+	
+	//@Column(name = "GLOBAL_BALANCE")
+	//private Double globalBalance;
+
+ 
+    @OneToMany(mappedBy = "customer")
+	private List<Accountdetails> accounts;
+	
+	public CustomerDomain() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public CustomerDomain(Long uuid, String userId, String firstName, String lastName, String address, String emailId,
+			 List<Accountdetails> accounts) {
+		super();
+		this.uuid = uuid;
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.emailId = emailId;
+		
+		this.accounts = accounts;
+	}
 
 	public Long getUuid() {
 		return uuid;
@@ -80,4 +107,17 @@ public class CustomerDomain {
 		this.emailId = emailId;
 	}
 
+	
+
+	public List<Accountdetails> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(List<Accountdetails> accounts) {
+		this.accounts = accounts;
+	}
+	
+	
+	
+	
 }

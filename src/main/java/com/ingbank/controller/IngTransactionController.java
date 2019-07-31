@@ -46,6 +46,7 @@ public class IngTransactionController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/api/user}").buildAndExpand().toUri());
 		return new ResponseEntity<CustomerDomain>(u, headers, HttpStatus.CREATED);
+
 	}
 
 	@GetMapping("/getUserList")
