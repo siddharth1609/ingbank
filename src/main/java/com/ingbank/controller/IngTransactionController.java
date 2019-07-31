@@ -15,28 +15,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.ingbank.domain.Accountdetails;
 import com.ingbank.domain.CustomerDomain;
 import com.ingbank.domain.CustomerModel;
+import com.ingbank.service.AccountService;
 import com.ingbank.service.CustomerService;
 
 @RestController
 @RequestMapping("api")
-public class CustomerValidationController {
+public class IngTransactionController {
 
 	@Autowired
 	private CustomerService customerService;
 
+	@Autowired
+	private AccountService accountService;
 
-	
-
-    @PostMapping("/createCustomer")
-	public ResponseEntity<CustomerDomain> createUser(@RequestBody CustomerDomain CustomerDomain, UriComponentsBuilder ucBuilder) {
-    	CustomerDomain u = new CustomerDomain();
+	@PostMapping("/createCustomer")
+	public ResponseEntity<CustomerDomain> createUser(@RequestBody CustomerDomain CustomerDomain,
+			UriComponentsBuilder ucBuilder) {
+		CustomerDomain u = new CustomerDomain();
 		try {
-			
+
 			u = customerService.createCsutomer(CustomerDomain);
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,9 +47,7 @@ public class CustomerValidationController {
 		headers.setLocation(ucBuilder.path("/api/user}").buildAndExpand().toUri());
 		return new ResponseEntity<CustomerDomain>(u, headers, HttpStatus.CREATED);
 	}
-	
-	
-	
+
 	@GetMapping("/getUserList")
 	public List<CustomerDomain> getUserList() {
 
@@ -61,5 +61,21 @@ public class CustomerValidationController {
 
 	}
 	
+	@PostMapping("/createAccount")
+	public ResponseEntity<Accountdetails> createAccount(@RequestBody Accountdetails Accountdetails,
+			UriComponentsBuilder ucBuilder) {
+		Accountdetails acnt = new Accountdetails();
+		try {
+
+			acnt = accountService.createAccount(Accountdetails);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(ucBuilder.path("/api/user}").buildAndExpand().toUri());
+		return new ResponseEntity<Accountdetails>(acnt, headers, HttpStatus.CREATED);
+	}
 
 }
