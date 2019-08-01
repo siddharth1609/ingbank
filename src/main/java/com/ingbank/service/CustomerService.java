@@ -1,6 +1,7 @@
 package com.ingbank.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public interface CustomerService {
 	public List<CustomerDomain> getAllCustomer();
 	
 	public CustomerDomain createCsutomer(CustomerDomain customerDomain);
+	
+	public CustomerDomain getCustomerById(Long id);
 
  
 }

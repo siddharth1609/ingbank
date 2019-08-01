@@ -62,6 +62,18 @@ public class IngTransactionController {
 
 	}
 	
+	
+	@GetMapping("/findUserByID/{id}")
+	public CustomerDomain getUserById(@PathVariable("id") long id) {
+
+		List<CustomerDomain> userList = new ArrayList();
+		
+
+		return  customerService.getCustomerById(id);
+
+	}
+	
+	
 	@PostMapping("/createAccount")
 	public ResponseEntity<Accountdetails> createAccount(@RequestBody Accountdetails Accountdetails,
 			UriComponentsBuilder ucBuilder) {

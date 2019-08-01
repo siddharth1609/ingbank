@@ -2,6 +2,7 @@ package com.ingbank.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,10 +42,35 @@ public class CustomerServiceImpl  implements  CustomerService {
 
 	@Override
 	public CustomerDomain createCsutomer(CustomerDomain customerDomain) {
-		
-		CustomerDomain customerDomain2 =  new CustomerDomain();
-		
-		return customerDomain2 = customerRepository.save(customerDomain);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public CustomerDomain getCustomerById(Long id) {
+		  CustomerDomain cs = new CustomerDomain();
+		  
+		 Optional<CustomerDomain> op = Optional.empty();
+		   op = customerRepository.findById(id); 
+		   if(op.isPresent()) { 
+			   cs = op.get();
+		   }
+		
+		return cs;
+	}
+
+	/*
+	 * @Override public CustomerDomain getCustomerById(Long id) {
+	 * 
+	 * CustomerDomain cs = new CustomerDomain();
+	 * 
+	 * Optional<CustomerDomain> op = Optional.empty(); op =
+	 * customerRepository.findById(id)); if(op.isPresent()) { cs = op.get();
+	 * 
+	 * } return cs; }
+	 */
+
+
+	
 
 }
